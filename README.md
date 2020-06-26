@@ -23,11 +23,11 @@ Let's create an `AutoTTLCache` with a a maximum size of twelve entires, and a TT
     
 We can add entries to the cache:
 
-   >>> a[1] = 56
-   >>> a[2] = 89
-   >>> a[3] = 99
-   >>> a[4] = 10
-   >>> a[5] = 20
+    >>> a[1] = 56
+    >>> a[2] = 89
+    >>> a[3] = 99
+    >>> a[4] = 10
+    >>> a[5] = 20
 
 And watch them expire, by repeatedly asking the cache to list its keys:
 
@@ -120,3 +120,11 @@ Better to use a single operation to retrieve an object, and handle the failure:
 A single additional thread will be running during any periods for which one or more `AutoTTLCache`
 objects are extant. The thread will start when the first `AutoTTLCache` is created, and will
 terminate shortly after the last `AutoTTLCache` is finalized.
+
+
+# Development
+
+  $ bumpversion patch
+  $ python setup.py sdist bdist_wheel
+  $ twine upload dist/* --config-file=path/to/sixty-north.pypirc
+  
