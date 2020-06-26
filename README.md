@@ -6,7 +6,7 @@ A time-to-live (TTL) cache dictionary with auto-expiry.
 
 To install from PyPI:
 
-  $ pip install autottlcache
+    $ pip install autottlcache
   
   
 # Usage
