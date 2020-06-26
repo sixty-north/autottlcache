@@ -84,7 +84,7 @@ Owing to the fact that items will auto-expire, to avoid race conditions you shou
 an _Easier to Ask for Forgiveness than Permission_ (EAFP) programming style, rather than a _Look
 Before You Leap_ (LBYL) style.
 
-Risky:
+Risky race-condition:
 
     from autottlcache import AutoTTLCache
     cache = AutoTTLCache(maxsize=100, ttl=30)
@@ -114,3 +114,9 @@ Better to use a single operation to retrieve an object, and handle the failure:
     else:
         display(image)
         
+        
+## Resource use
+
+A single additional thread will be running during any periods for which one or more `AutoTTLCache`
+objects are extant. The thread will start when the first `AutoTTLCache` is created, and will
+terminate shortly after the last `AutoTTLCache` is finalized.
