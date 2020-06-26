@@ -19,56 +19,56 @@ expire and automatically be removed.
 Let's create an `AutoTTLCache` with a a maximum size of twelve entires, and a TTL of 30 seconds:
 
     >>> from autottlcache import AutoTTLCache
-    >>> a = AutoTTLCache(maxsize=12, ttl=30.0)
+    >>> cache = AutoTTLCache(maxsize=12, ttl=30.0)
     
 We can add entries to the cache:
 
-    >>> a[1] = 56
-    >>> a[2] = 89
-    >>> a[3] = 99
-    >>> a[4] = 10
-    >>> a[5] = 20
+    >>> cache[1] = 56
+    >>> cache[2] = 89
+    >>> cache[3] = 99
+    >>> cache[4] = 10
+    >>> cache[5] = 20
 
 And watch them expire, by repeatedly asking the cache to list its keys:
 
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [2, 3, 4, 5]
     
 We took long enough adding the keys that the first one had already expired:
     
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [3, 4, 5]
     
 Now the second one has gone too:
     
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [3, 4, 5]
     
 This time we're quick enough to get in before the third one expires:
  
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [3, 4, 5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [3, 4, 5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [3, 4, 5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [4, 5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [4, 5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [4, 5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     [5]
-    >>> list(a.keys())
+    >>> list(cache.keys())
     []
     
 All gone.
@@ -124,7 +124,9 @@ terminate shortly after the last `AutoTTLCache` is finalized.
 
 # Development
 
-  $ bumpversion patch
-  $ python setup.py sdist bdist_wheel
-  $ twine upload dist/* --config-file=path/to/sixty-north.pypirc
+To release, there is a short manual process:
+
+    $ bumpversion patch
+    $ python setup.py sdist bdist_wheel
+    $ twine upload dist/* --config-file=path/to/sixty-north.pypirc
   
