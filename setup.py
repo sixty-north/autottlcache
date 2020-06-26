@@ -93,4 +93,6 @@ setup(
         'doc': ['sphinx', 'sphinx_rtd_theme'],
         'test': ['coverage', 'hypothesis', 'pytest'],
     },
+
+    python_requires='>=3.8',
 )
