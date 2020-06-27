@@ -81,7 +81,10 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    packages=find_packages(exclude=['contrib', 'docs', 'test*']),
+    packages=find_packages(
+        where="src",
+        exclude=['contrib', 'docs', 'test*']
+    ),
 
     install_requires=[
         'cachetools',
